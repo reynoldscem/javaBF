@@ -52,8 +52,13 @@ public class JavaBF {
           tape.put(tPtr, stdin.read());
           break;
         case '.':
-          System.out.print(Character.toChars(tape.get(tPtr)));
-          break;
+          try {
+            System.out.print(Character.toChars(tape.get(tPtr)));
+            break;
+          } catch (IllegalArgumentException e) {
+            System.out.println("Invalid program. Attempt to print invalid ascii character.");
+            System.exit(1);
+          }
         case '[':
           if (!tape.containsKey(tPtr)) tape.put(tPtr, 0);
           if (tape.get(tPtr) == 0)
